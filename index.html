@@ -3,11 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chuan Pablo III Bot – 21:37</title>
-  <meta name="description" content="Nowoczesny bot Discord, który o 21:37 dołącza na kanał 2137 i odtwarza muzykę. Dodaj bota na swój serwer!" />
-  <meta property="og:title" content="Chuan Pablo III Bot – 21:37" />
-  <meta property="og:description" content="Bot Discord, który punktualnie o 21:37 robi swoje. Sprawdź!" />
-  <meta property="og:type" content="website" />
+  <title>Chuan Pablo III — w fazie testów</title>
+  <meta name="description" content="Papierzak Bot jest w fazie testów. Ogłosimy premierę, gdy będzie dostępny dla wszystkich." />
   <meta name="theme-color" content="#8b5cf6" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,164 +16,120 @@
       --accent:#8b5cf6;
       --accent2:#a78bfa;
       --text:#f5f5f7;
-      --muted:#b4b4c7;
+      --muted:#b7b7c9;
       --glass: rgba(255,255,255,.06);
       --radius: 18px;
       --shadow: 0 10px 30px rgba(139,92,246,.25);
     }
-    *{box-sizing:border-box; margin:0; padding:0}
-    html,body{height:100%; width:100%}
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
-      display:flex; flex-direction:column; min-height:100vh; width:100%;
-      font-family:'Inter',system-ui,Segoe UI,Roboto,Arial; color:var(--text);
-      background: radial-gradient(1000px 600px at 80% -10%, rgba(139,92,246,.25), transparent 60%),
-                  radial-gradient(800px 500px at -10% 20%, rgba(168,85,247,.18), transparent 55%),
+      margin:0; font-family:'Inter',system-ui,Segoe UI,Roboto,Arial; color:var(--text);
+      background: radial-gradient(1200px 700px at 80% -10%, rgba(139,92,246,.25), transparent 60%),
+                  radial-gradient(900px 600px at -10% 30%, rgba(168,85,247,.18), transparent 55%),
                   linear-gradient(180deg, var(--bg), var(--bg2));
-      overflow-x:hidden;
+      overflow:hidden;
     }
-    a{color:inherit; text-decoration:none}
-    .container{max-width:1100px; margin:0 auto; padding:24px; width:100%}
-    header{position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px); background:rgba(10,10,16,.45); border-bottom:1px solid rgba(255,255,255,.06); z-index:10; width:100%}
-    .nav{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap}
-    .logo{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px}
-    .logo-mark{width:34px; height:34px; border-radius:12px; background: linear-gradient(135deg, var(--accent), #5b21b6); box-shadow:var(--shadow); position:relative}
-    .logo-mark:after{content:""; position:absolute; inset:6px; border-radius:9px; background:rgba(255,255,255,.14)}
-    .cta{display:flex; gap:12px; flex-wrap:wrap}
-    .btn{padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,.1); background:var(--glass); transition:.2s transform, .2s box-shadow, .2s background; font-weight:600}
-    .btn:hover{transform:translateY(-1px); box-shadow:var(--shadow); background:rgba(255,255,255,.08)}
-    .btn-primary{background:linear-gradient(135deg, var(--accent), #5b21b6); border:0}
-    .btn-primary:hover{filter:brightness(1.06)}
 
-    main{flex:1 0 auto; display:flex; flex-direction:column; justify-content:center}
+    .blob{position:absolute; filter:blur(40px); opacity:.25; mix-blend-mode:screen; animation:float 16s ease-in-out infinite}
+    .blob.one{width:420px; height:420px; right:-160px; top:-80px; background:radial-gradient(circle at 30% 30%, #a78bfa, transparent 60%)}
+    .blob.two{width:360px; height:360px; left:-120px; bottom:-120px; animation-delay: -4s; background:radial-gradient(circle at 70% 40%, #7c3aed, transparent 60%)}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
 
-    .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:34px; padding:64px 24px; width:100%}
-    .hero .card{background:var(--glass); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow); padding:28px; width:100%}
-    h1{font-size:clamp(28px, 5vw, 54px); line-height:1.2; margin:10px 0 12px}
-    p.lead{font-size:clamp(15px, 2.2vw, 20px); color:var(--muted)}
+    header{position:fixed; inset:16px 16px auto; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px}
+    .mark{width:34px; height:34px; border-radius:12px; background:linear-gradient(135deg, var(--accent), #5b21b6); box-shadow: var(--shadow); position:relative}
+    .mark:after{content:""; position:absolute; inset:7px; border-radius:10px; background:rgba(255,255,255,.15)}
+
     .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(139,92,246,.12); color:var(--accent2); border:1px solid rgba(139,92,246,.35); font-weight:600}
 
-    .countdown{display:flex; gap:14px; margin-top:22px; flex-wrap:wrap; justify-content:center}
-    .time{flex:1; min-width:80px; padding:18px 12px; text-align:center; border-radius:14px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08)}
-    .time .num{font-size:clamp(24px,4vw,36px); font-weight:800; letter-spacing:.5px}
-    .time .lbl{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1px}
+    main{position:relative; z-index:1; height:100%; display:grid; place-items:center; padding:24px}
 
-    .features{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-top:18px; width:100%}
-    .feature{padding:18px; border-radius:14px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08)}
-    .feature h3{margin:8px 0 6px}
-    .feature p{color:var(--muted); margin:0}
+    .card{max-width:900px; width:min(100%, 980px); padding:36px; border-radius:20px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow)}
 
-    footer{padding:30px 24px; color:#bdbdd4; border-top:1px solid rgba(255,255,255,.06); background:rgba(10,10,16,.45); width:100%; position:relative}
+    h1{font-size:clamp(32px, 5vw, 64px); line-height:1.06; margin:10px 0 10px}
+    .gradient-text{background:linear-gradient(135deg, #ede9fe, #a78bfa 40%, #7c3aed 80%); -webkit-background-clip:text; background-clip:text; color:transparent}
+    p.lead{font-size:clamp(16px,2.2vw,20px); color:var(--muted); margin:0 0 16px}
 
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr; padding-top:34px}
+    .actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .btn{padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,.1); background:var(--glass); font-weight:700; text-decoration:none; transition:transform .2s, box-shadow .2s, background .2s; color:var(--text);}
+    .btn:hover{transform:translateY(-1px); box-shadow:var(--shadow); background:rgba(255,255,255,.09)}
+    .btn-primary{background:linear-gradient(135deg, var(--accent), #5b21b6); border:0; color:white;}
+    .btn-primary:hover{filter:brightness(1.06)}
+
+    .status{display:inline-flex; align-items:center; gap:8px; font-weight:700; color:#e9d5ff}
+    .dot{width:10px; height:10px; border-radius:50%; background:#a78bfa; box-shadow:0 0 0 0 rgba(167,139,250,.8); animation:pulse 2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(167,139,250,.7)}70%{box-shadow:0 0 0 16px rgba(167,139,250,0)}100%{box-shadow:0 0 0 0 rgba(167,139,250,0)}}
+
+    .timeline{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:14px; margin-top:22px}
+    .step{padding:16px; border-radius:14px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); opacity:0; transform:translateY(8px); animation:fadeUp .6s ease forwards}
+    .step:nth-child(2){animation-delay:.1s}
+    .step:nth-child(3){animation-delay:.2s}
+    .step h3{margin:0 0 6px}
+    .step p{margin:0; color:var(--muted)}
+    @keyframes fadeUp{to{opacity:1; transform:translateY(0)}}
+
+    footer{position:fixed; inset:auto 0 12px 0; z-index:2; display:flex; justify-content:center; pointer-events:none}
+    .foot{pointer-events:auto; padding:10px 16px; border-radius:12px; background:rgba(10,10,16,.55); border:1px solid rgba(255,255,255,.07); backdrop-filter: blur(8px); color:#cfcfe4}
+
+    .glitch{position:relative; display:inline-block}
+    .glitch::before,.glitch::after{content:attr(data-text); position:absolute; left:0; top:0; width:100%; overflow:hidden}
+    .glitch::before{transform:translate(1px,-1px); color:#a78bfa; mix-blend-mode:screen; animation:gl1 2s infinite linear}
+    .glitch::after{transform:translate(-1px,1px); color:#7c3aed; mix-blend-mode:screen; animation:gl2 2.1s infinite linear}
+    @keyframes gl1{0%,100%{clip-path:inset(0 0 0 0)} 33%{clip-path:inset(0 0 75% 0)} 66%{clip-path:inset(40% 0 0 0)}}
+    @keyframes gl2{0%,100%{clip-path:inset(0 0 0 0)} 33%{clip-path:inset(60% 0 0 0)} 66%{clip-path:inset(0 0 30% 0)}}
+
+    @media (max-width: 720px){
+      .card{padding:26px}
+      header{inset:12px}
     }
-
-    .glow{box-shadow:0 0 0 0 rgba(139,92,246,.55); animation: pulse 2s infinite}
-    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(139,92,246,.55)}70%{box-shadow:0 0 0 22px rgba(139,92,246,0)}100%{box-shadow:0 0 0 0 rgba(139,92,246,0)}}
   </style>
 </head>
 <body>
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+
   <header>
-    <div class="container nav">
-      <div class="logo"><span class="logo-mark glow"></span> Chuan Pablo III Bot</div>
-      <div class="cta">
-        <a class="btn btn-primary" href="#invite" id="inviteBtn">Dodaj bota</a>
-        <a class="btn btn-primary" href="tosandpp.html" id="inviteBtn">Regulamin</a>
-      </div>
+    <div class="brand">
+      <span class="mark"></span>
+      Chuan Pablo III
     </div>
+    <span class="pill status"><span class="dot"></span> W fazie testów</span>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <div class="card">
-        <span class="pill">Papieżowa energia • 21:37</span>
-        <h1>Bot, który <span style="color:var(--accent2)">wbija o 21:37</span> i robi show</h1>
-        <p class="lead">Chuan Pablo III automatycznie o <b>21:37</b> dołącza do kanału <b>2137</b> na Twoim serwerze i odtwarza wybrany utwór. O <b>21:38</b> kulturalnie się rozłącza.<span style="color:var(--accent2)">Uwaga!</span> Kanał musi mieć nazwę 2137! Bez żadnych innych znaków!</p>
+  <main>
+    <section class="card">
+      <span class="pill">Papieżowa energia</span>
+      <h1><span class="gradient-text">Bot jest w <span class="glitch" data-text="TESTACH">TESTACH</span></span></h1>
+      <p class="lead">Pracujemy nad stabilnością i dopieszczamy szczegóły. <br/>Ogłosimy premierę, gdy będzie dostępny dla wszystkich.</p>
 
-        <div class="countdown" id="countdown">
-          <div class="time"><div class="num" id="h">0</div><div class="lbl">godz.</div></div>
-          <div class="time"><div class="num" id="m">0</div><div class="lbl">min</div></div>
-          <div class="time"><div class="num" id="s">0</div><div class="lbl">sek</div></div>
-        </div>
-
-        <div style="margin-top:22px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center">
-          <a class="btn btn-primary" href="#invite" id="inviteBtn2">Dodaj bota</a>
-        </div>
+      <div class="actions">
+        <a class="btn" id="notify" href="#">📩Powiadom mnie o starcie</a>
       </div>
 
-      <div class="card" id="funkcje">
-        <div class="features">
-          <div class="feature">
-            <h3>Wejście 21:37</h3>
-            <p>Automatyczne dołączenie do kanału głosowego o nazwie <b>2137</b> na wszystkich serwerach.</p>
-          </div>
-          <div class="feature">
-            <h3>Autowyjście 21:38</h3>
-            <p>Po minucie bot się rozłącza, by nie blokować kanału.</p>
-          </div>
-          <div class="feature">
-            <h3>Bezpieczny</h3>
-            <p>Wymagane tylko niezbędne uprawnienia bota. Żadnego śmiecenia.</p>
-          </div>
-        </div>
-      </div>
     </section>
   </main>
 
   <footer>
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
-      <div>© <span id="year"></span> Chuan Pablo III Bot</div>
-      <div style="opacity:.8">Zaprojektowano z miłością 💜</div>
-    </div>
+    <div class="foot">© <span id="year"></span> Chuan Pablo III • Wróć niebawem 💜</div>
   </footer>
 
   <script>
-    const INVITE_URL = "https://discord.com/oauth2/authorize?client_id=1424054050621489352";
-    document.getElementById('inviteBtn').href = INVITE_URL;
-    document.getElementById('inviteBtn2').href = INVITE_URL;
+    // Prosty "powiadom mnie" — mailto lub kotwiczka do formularza (tu: mailto)
+    const mailto = `mailto:kontakt@grzybcio.pl?subject=Powiadom%20mnie%20o%20starcie%20Papierzak%20Bota&body=Cze%C5%9B%C4%87!%20Chc%C4%99%20dosta%C4%87%20info%20kiedy%20bot%20b%C4%99dzie%20dost%C4%99pny.`;
+    document.getElementById('notify').href = mailto;
 
-    function nextTarget2137(){
-      const now = new Date();
-      const target = new Date();
-      target.setHours(21, 37, 0, 0);
-      if (target <= now) {
-        target.setDate(target.getDate() + 1);
-      }
-      return target;
-    }
+    // Subtelna animacja wejścia karty
+    window.addEventListener('load', () => {
+      const card = document.querySelector('.card');
+      card.animate([
+        { transform:'translateY(8px)', opacity:.0 },
+        { transform:'translateY(0)', opacity:1 }
+      ], { duration: 420, easing: 'ease-out', fill: 'forwards' });
+    });
 
-    const el = {
-      h: document.getElementById('h'),
-      m: document.getElementById('m'),
-      s: document.getElementById('s')
-    };
-
-    let target = nextTarget2137();
-
-    function updateCountdown(){
-      const now = new Date();
-      let diff = target - now;
-      if (diff <= 0){
-        target = nextTarget2137();
-        diff = target - now;
-      }
-      const sec = Math.floor(diff / 1000);
-      const hours = Math.floor((sec % 86400) / 3600);
-      const minutes = Math.floor((sec % 3600) / 60);
-      const seconds = sec % 60;
-
-      el.h.textContent = hours.toString().padStart(2,'0');
-      el.m.textContent = minutes.toString().padStart(2,'0');
-      el.s.textContent = seconds.toString().padStart(2,'0');
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
+    // Rok w stopce
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-
-
-
